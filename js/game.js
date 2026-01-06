@@ -5,8 +5,15 @@ export class Game {
   constructor(ctx, canvas) {
     this.ctx = ctx;
     this.canvas = canvas;
-    this.world = new World();
-    this.player = new Player(200, 100);
+
+    this.world = new World(canvas.height);
+
+    // spawn em cima da grama
+    const spawnX = 10 * this.world.tileSize;
+    const spawnY =
+      this.world.grassHeight * this.world.tileSize - this.world.tileSize * 2;
+
+    this.player = new Player(spawnX, spawnY, this.world);
   }
 
   update() {
